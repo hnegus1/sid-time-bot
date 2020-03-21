@@ -1,7 +1,15 @@
 from pymongo import MongoClient
 from datetime import datetime
 
-client = MongoClient()
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+USER = os.getenv('CONNECTION_USER')
+PASS = os.getenv('CONNECTION_PASS')
+
+client = MongoClient(f'mongodb+srv://{USER}:{PASS}@harry-n-rbsaq.azure.mongodb.net/test?retryWrites=true&w=majority')
 db = client['sid-time-bot']
 events = db.events
 names = db.users
